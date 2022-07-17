@@ -60,13 +60,7 @@ const revealAccueil = function () {
 
 document.addEventListener("DOMContentLoaded", revealAccueil);
 
-//   carrouselImg.forEach((img) => {
-//     const interval = setInterval(() => {
-//       img.style.transform = "translateX(-175px)";
-//       console.log("image décalée");
-//     }, 1500);
-//     interval();
-//   });
+// Carousel compétences
 
 //  Portfolio fade in
 
@@ -85,3 +79,19 @@ const portfolioObserver = new IntersectionObserver(revealPortfolioLists, {
 portfolioLists.forEach(function (list) {
   portfolioObserver.observe(list);
 });
+
+// Test pour Alexandre
+
+// const revealPresTitle = function (entries, observer) {
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) return;
+
+//   presentationTitle.classList.remove("fade-in");
+//   observer.unobserve(entry.target);
+// };
+
+// const observer = new IntersectionObserver(revealPresTitle, {
+//   root: null,
+//   threshold: 0.3,
+// });
+// observer.observe(presentationContainer);
