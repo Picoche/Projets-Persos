@@ -24,13 +24,11 @@ const presentationTitle = document.querySelector(".presentation__title");
 
 const presentation = document.querySelector(".presentation");
 
-// Carrousel components
-const skillBundlesContainer = document.querySelector(
-  ".skill__bundles-container"
-);
+// Carousel components
+const carousel = document.querySelector(".carousel");
+const carouselContainer = document.querySelector(".carousel-container");
 
-const skillBundles = document.querySelectorAll(".skill__bundles");
-const skillIcons = document.querySelectorAll(".skill__icon");
+const carouselItems = document.querySelectorAll(".carousel-item");
 
 // Portfolio components
 const portfolioMainContainer = document.querySelector(
@@ -60,8 +58,108 @@ const revealAccueil = function () {
 
 document.addEventListener("DOMContentLoaded", revealAccueil);
 
-// Carousel compétences
+// Carousel slide compétences
 
+const slider = function () {
+  const slider = document.querySelector(".slider");
+  const slides = document.querySelectorAll(".slide");
+  const btnLeft = document.querySelector(".slider__btn--left");
+  const btnRight = document.querySelector(".slider__btn--right");
+  const dotContainer = document.querySelector(".dots");
+
+  let curSlide = 0;
+  const maxSlide = slides.length - 1;
+
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class ="dots__dot" data-slides="${i}"></button>`
+      );
+    });
+  };
+
+  const activateDot = function (slide) {
+    document
+      .querySelectorAll(".dots__dot")
+      .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+    document
+      .querySelector(`.dots__dot[data-slides="${slide}"]`)
+      .classList.add("dots__dot--active");
+  };
+
+  const goToSlide = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
+  // Next slide
+
+  let myInterval = setInterval(() => {
+    nextSlide();
+    goToSlide();
+  }, 2000);
+
+  const nextSlide = function () {
+    if (curSlide === maxSlide) {
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide;
+    } else {
+      curSlide--;
+    }
+
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+
+  const init = function () {
+    createDots();
+    goToSlide(0);
+    activateDot(0);
+  };
+  init();
+
+  btnRight.addEventListener("click", nextSlide);
+  btnLeft.addEventListener("click", prevSlide);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") prevSlide();
+    else if (e.key === "ArrowRight") nextSlide();
+  });
+
+  dotContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("dots__dot")) {
+      const slide = e.target.dataset.slides;
+      goToSlide(slide);
+      activateDot(slide);
+    }
+  });
+
+  slider.addEventListener("mouseover", () => {
+    clearInterval(myInterval);
+    console.log(myInterval);
+  });
+
+  slider.addEventListener("mouseleave", () => {
+    myInterval = setInterval(() => {
+      nextSlide();
+      goToSlide();
+    }, 2000);
+  });
+};
+slider();
 //  Portfolio fade in
 
 const revealPortfolioLists = function (entries, observer) {
@@ -95,3 +193,12 @@ portfolioLists.forEach(function (list) {
 //   threshold: 0.3,
 // });
 // observer.observe(presentationContainer);
+
+// const [dataFirstBatch] = [firstBatch];
+// const [dataSecondBatch] = [secondBatch];
+// const [dataThirdBatch] = [thirdBatch];
+// const [...unitedData] = [dataFirstBatch, dataSecondBatch, dataThirdBatch];
+// // console.log(dataFirstBatch);
+// // console.log(dataSecondBatch);
+// // console.log(dataThirdBatch);
+// console.log(unitedData);
