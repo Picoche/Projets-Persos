@@ -50,18 +50,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Accueil slide in
 
-const revealAccueil = function () {
-  setTimeout(() => {
-    accueilLoadLeft.forEach((load) => {
-      setInterval(() => {
-        load.classList.remove("accueil__load-left");
-      }, 500);
-    });
-    accueilLoadRight.classList.remove("accueil__load-right");
-  }, 1200);
-};
+// const revealAccueil = function () {
+//   setTimeout(() => {
+//     accueilLoadLeft.forEach((load) => {
+//       setInterval(() => {
+//         load.classList.remove("accueil__load-left");
+//       }, 500);
+//     });
+//     accueilLoadRight.classList.remove("accueil__load-right");
+//   }, 1200);
+// };
 
-document.addEventListener("DOMContentLoaded", revealAccueil);
+// document.addEventListener("DOMContentLoaded", revealAccueil);
 
 // Carousel slide compétences
 

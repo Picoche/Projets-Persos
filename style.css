@@ -60,7 +60,8 @@ header {
 }
 
 .accueil__content {
-  transition: transform 1.5s;
+  position: relative;
+  /* transition: transform 1.5s; */
 }
 
 .accueil__skewed {
@@ -79,13 +80,55 @@ header {
   font-size: 2rem;
 }
 
-.accueil__load-left {
+.accueil__load-left::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--lighter-primary);
+  animation: appear-load-left 1.5s linear;
+}
+
+.accueil__load-right::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: #fff;
+  animation: appear-load-left 1.5s linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes appear-load-left {
+  0% {
+    transform: scaleX(1);
+    width: 100%;
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    width: 0%;
+    transform-origin: right;
+  }
+}
+
+/* @keyframes appear-load-right {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+} */
+
+/* .accueil__load-left {
   transform: translateX(-100%);
 }
 
 .accueil__load-right {
   transform: translateX(100%);
-}
+} */
 
 .presentation__container {
   display: flex;
