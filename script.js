@@ -190,16 +190,16 @@ let clicked = false;
 portfolioRow.forEach((row) => {
   row.addEventListener("click", (e) => {
     if (!clicked) {
-      e.target.style.flexDirection = "row";
-      e.target.style.width = "70%";
-      e.target.style.transitionDuration = "1s";
-      e.target.querySelector("img").classList.remove("active");
+      e.target.closest(".row").style.flexDirection = "row";
+      e.target.closest(".row").style.width = "70%";
+      e.target.closest(".row").style.transitionDuration = "1s";
+      e.target.closest(".row").querySelector("img").classList.remove("active");
       clicked = !clicked;
     } else {
-      e.target.style.flexDirection = "column-reverse";
-      e.target.style.width = "30%";
-      e.target.style.transitionDuration = "1s";
-      e.target.querySelector("img").classList.add("active");
+      e.target.closest(".row").style.flexDirection = "column-reverse";
+      e.target.closest(".row").style.width = "30%";
+      e.target.closest(".row").style.transitionDuration = "1s";
+      e.target.closest(".row").querySelector("img").classList.add("active");
       clicked = !clicked;
     }
   });
