@@ -46,6 +46,10 @@ const portfolioImages = document.querySelectorAll(".row img");
 
 document.addEventListener("DOMContentLoaded", () => {
   header.classList.add("loaded");
+  setTimeout(() => {
+    accueilContainer.style.opacity = 1;
+    accueilContainer.style.transitionDuration = "1s";
+  }, 1000);
 });
 
 // Accueil slide in
@@ -167,17 +171,37 @@ const slider = function () {
 slider();
 //  Portfolio
 
-portfolioRow.forEach((row) => {
-  row.addEventListener("mouseenter", (e) => {
-    e.target.querySelector("img").classList.add("active");
-    e.target.querySelector("img").classList.remove("inactive");
-  });
-});
+// portfolioRow.forEach((row) => {
+//   row.addEventListener("mouseenter", (e) => {
+//     e.target.querySelector("img").classList.add("active");
+//     e.target.querySelector("img").classList.remove("inactive");
+//   });
+// });
+
+// portfolioRow.forEach((row) => {
+//   row.addEventListener("mouseleave", (e) => {
+//     e.target.querySelector("img").classList.add("inactive");
+//     e.target.querySelector("img").classList.remove("active");
+//   });
+// });
+
+let clicked = false;
 
 portfolioRow.forEach((row) => {
-  row.addEventListener("mouseleave", (e) => {
-    e.target.querySelector("img").classList.add("inactive");
-    e.target.querySelector("img").classList.remove("active");
+  row.addEventListener("click", (e) => {
+    if (!clicked) {
+      e.target.style.flexDirection = "row";
+      e.target.style.width = "70%";
+      e.target.style.transitionDuration = "1s";
+      e.target.querySelector("img").classList.remove("active");
+      clicked = !clicked;
+    } else {
+      e.target.style.flexDirection = "column-reverse";
+      e.target.style.width = "30%";
+      e.target.style.transitionDuration = "1s";
+      e.target.querySelector("img").classList.add("active");
+      clicked = !clicked;
+    }
   });
 });
 
