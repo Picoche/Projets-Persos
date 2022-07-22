@@ -1,4 +1,5 @@
 // Header components
+const header = document.querySelector("header");
 
 // Nav components
 const visibilityAccess = document.querySelector(".visual__access");
@@ -35,25 +36,29 @@ const portfolioMainContainer = document.querySelector(
   ".portfolio__main-container"
 );
 
-const portfolioLists = document.querySelectorAll(".portfolio__list");
-const portfolioFirstList = document.querySelector(".porfolio__first-list");
+const portfolioFirstRow = document.querySelector(".portfolio__first-row");
+const portfolioSecondRow = document.querySelector(".portfolio__second-row");
+const portfolioThirdRow = document.querySelector(".portfolio__third-row");
+const portfolioRow = document.querySelectorAll(".row");
+const portfolioImages = document.querySelectorAll(".row img");
 
-const porfolioSecondList = document.querySelector(".porfolio__second-list");
+// Animation chargement
 
-const portfolioThirdList = document.querySelector(".porfolio__third-list");
-
-const hiddenPortfolio = document.querySelectorAll(".porfolio__hide");
-const portfolioContainers = document.querySelectorAll(".porfolio__containers");
+document.addEventListener("DOMContentLoaded", () => {
+  header.classList.add("loaded");
+});
 
 // Accueil slide in
 
 const revealAccueil = function () {
-  accueilLoadLeft.forEach((load) => {
-    setInterval(() => {
-      load.classList.remove("accueil__load-left");
-    }, 500);
-  });
-  accueilLoadRight.classList.remove("accueil__load-right");
+  setTimeout(() => {
+    accueilLoadLeft.forEach((load) => {
+      setInterval(() => {
+        load.classList.remove("accueil__load-left");
+      }, 500);
+    });
+    accueilLoadRight.classList.remove("accueil__load-right");
+  }, 1200);
 };
 
 document.addEventListener("DOMContentLoaded", revealAccueil);
@@ -100,7 +105,7 @@ const slider = function () {
   let myInterval = setInterval(() => {
     nextSlide();
     goToSlide();
-  }, 2000);
+  }, 3500);
 
   const nextSlide = function () {
     if (curSlide === maxSlide) {
@@ -156,26 +161,24 @@ const slider = function () {
     myInterval = setInterval(() => {
       nextSlide();
       goToSlide();
-    }, 2000);
+    }, 3500);
   });
 };
 slider();
-//  Portfolio fade in
+//  Portfolio
 
-const revealPortfolioLists = function (entries, observer) {
-  const [entry] = entries;
-  if (!entry.isIntersecting) return;
-
-  entry.target.classList.remove("hide__portfolio");
-  observer.unobserve(entry.target);
-};
-
-const portfolioObserver = new IntersectionObserver(revealPortfolioLists, {
-  root: null,
-  threshold: 0.3,
+portfolioRow.forEach((row) => {
+  row.addEventListener("mouseenter", (e) => {
+    e.target.querySelector("img").classList.add("active");
+    e.target.querySelector("img").classList.remove("inactive");
+  });
 });
-portfolioLists.forEach(function (list) {
-  portfolioObserver.observe(list);
+
+portfolioRow.forEach((row) => {
+  row.addEventListener("mouseleave", (e) => {
+    e.target.querySelector("img").classList.add("inactive");
+    e.target.querySelector("img").classList.remove("active");
+  });
 });
 
 // Test pour Alexandre
