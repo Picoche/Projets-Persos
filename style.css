@@ -2,6 +2,7 @@
   --primary-color: #060b0f;
   --secondary-color: #a4031f;
   --tertiary-color: #ddcecd;
+  --font-color: #330033;
   --light-primary: #1b1c22;
   --light-secondary: #ff1053;
   --lighter-primary: #272932;
@@ -23,7 +24,7 @@ html {
 
 body {
   background-color: var(--tertiary-color);
-  color: var(--secondary-color);
+  color: var(--font-color);
 }
 
 header {
@@ -153,7 +154,7 @@ header {
 
 .presentation {
   width: 70%;
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1.7;
 }
 
@@ -296,7 +297,7 @@ header {
 .row {
   display: flex;
   flex-direction: column-reverse;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 30%;
   background-color: #c0afb4;

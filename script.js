@@ -143,11 +143,6 @@ const slider = function () {
   btnRight.addEventListener("click", nextSlide);
   btnLeft.addEventListener("click", prevSlide);
 
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowLeft") prevSlide();
-    else if (e.key === "ArrowRight") nextSlide();
-  });
-
   dotContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("dots__dot")) {
       const slide = e.target.dataset.slides;
@@ -191,14 +186,14 @@ portfolioRow.forEach((row) => {
   row.addEventListener("click", (e) => {
     if (!clicked) {
       e.target.closest(".row").style.flexDirection = "row";
-      e.target.closest(".row").style.width = "70%";
       e.target.closest(".row").style.transitionDuration = "1s";
+      e.target.closest(".row").style.width = "100%";
       e.target.closest(".row").querySelector("img").classList.remove("active");
       clicked = !clicked;
     } else {
       e.target.closest(".row").style.flexDirection = "column-reverse";
-      e.target.closest(".row").style.width = "30%";
       e.target.closest(".row").style.transitionDuration = "1s";
+      e.target.closest(".row").style.width = "30%";
       e.target.closest(".row").querySelector("img").classList.add("active");
       clicked = !clicked;
     }
