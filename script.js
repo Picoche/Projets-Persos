@@ -11,7 +11,7 @@ const accueilPrimary = document.querySelector(".accueil__primary");
 const accueilSecondary = document.querySelector(".accueil__secondary");
 const accueilTertiary = document.querySelector(".accueil__tertiary");
 const accueilSkewed = document.querySelectorAll(".accueil__skewed");
-const accueilLoadLeft = document.querySelectorAll(".accueil__load-left");
+const accueilLoadLeft = document.querySelector(".accueil__load-left");
 const accueilLoadRight = document.querySelector(".accueil__load-right");
 
 // Main components
@@ -44,28 +44,36 @@ const portfolioImages = document.querySelectorAll(".row img");
 
 // Animation chargement
 
-document.addEventListener("DOMContentLoaded", () => {
-  header.classList.add("loaded");
-  setTimeout(() => {
-    accueilContainer.style.opacity = 1;
-    accueilContainer.style.transitionDuration = "1s";
-  }, 1000);
+// Présentation
+
+const presTitleAnimation = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.add("animate__animated", "animate__lightSpeedInLeft");
+  entry.target.style.opacity = 1;
+  entry.target.style.transitionDuration = "1s";
+  observer.unobserve(entry.target);
+};
+const titleObserver = new IntersectionObserver(presTitleAnimation, {
+  root: null,
+  threshold: 1,
 });
+titleObserver.observe(presentationTitle);
 
-// Accueil slide in
+// const revealPresTitle = function (entries, observer) {
+//   const [entry] = entries;
+//   if (!entry.isIntersecting) return;
 
-// const revealAccueil = function () {
-//   setTimeout(() => {
-//     accueilLoadLeft.forEach((load) => {
-//       setInterval(() => {
-//         load.classList.remove("accueil__load-left");
-//       }, 500);
-//     });
-//     accueilLoadRight.classList.remove("accueil__load-right");
-//   }, 1200);
+//   presentationTitle.classList.remove("fade-in");
+//   observer.unobserve(entry.target);
 // };
 
-// document.addEventListener("DOMContentLoaded", revealAccueil);
+// const observer = new IntersectionObserver(revealPresTitle, {
+//   root: null,
+//   threshold: 0.3,
+// });
+// observer.observe(presentationContainer);
 
 // Carousel slide compétences
 
@@ -185,18 +193,51 @@ let clicked = false;
 portfolioRow.forEach((row) => {
   row.addEventListener("click", (e) => {
     if (!clicked) {
-      e.target.closest(".row").style.flexDirection = "row";
-      e.target.closest(".row").style.transitionDuration = "1s";
-      e.target.closest(".row").style.width = "100%";
-      e.target.closest(".row").querySelector("img").classList.remove("active");
-      clicked = !clicked;
+      e.target.closest(".row").classList.add("focused-row");
+      e.target.closest(".row").querySelector("img").style.width = "30%";
+      e.target
+        .closest(".row")
+        .querySelectorAll(".arrow")
+        .forEach((arrow) => {
+          arrow.classList.add("hidden-arrow");
+        });
     } else {
-      e.target.closest(".row").style.flexDirection = "column-reverse";
-      e.target.closest(".row").style.transitionDuration = "1s";
-      e.target.closest(".row").style.width = "30%";
-      e.target.closest(".row").querySelector("img").classList.add("active");
-      clicked = !clicked;
+      e.target.closest(".row").classList.remove("focused-row");
+      e.target.closest(".row").querySelector("img").style.width = "70%";
+      e.target
+        .closest(".row")
+        .querySelectorAll(".arrow")
+        .forEach((arrow) => {
+          arrow.classList.remove("hidden-arrow");
+        });
     }
+    clicked = !clicked;
+  });
+
+  row.addEventListener("mouseenter", (e) => {
+    e.target
+      .closest(".row")
+      .querySelectorAll(".arrow")
+      .forEach((arrow) => {
+        arrow.classList.add(
+          "animate__animated",
+          "animate__pulse",
+          "animate__infinite"
+        );
+      });
+  });
+
+  row.addEventListener("mouseleave", (e) => {
+    e.target
+      .closest(".row")
+      .querySelectorAll(".arrow")
+      .forEach((arrow) => {
+        arrow.classList.remove(
+          "animate__animated",
+          "animate__pulse",
+          "animate__infinite"
+        );
+      });
   });
 });
 
@@ -215,12 +256,3 @@ portfolioRow.forEach((row) => {
 //   threshold: 0.3,
 // });
 // observer.observe(presentationContainer);
-
-// const [dataFirstBatch] = [firstBatch];
-// const [dataSecondBatch] = [secondBatch];
-// const [dataThirdBatch] = [thirdBatch];
-// const [...unitedData] = [dataFirstBatch, dataSecondBatch, dataThirdBatch];
-// // console.log(dataFirstBatch);
-// // console.log(dataSecondBatch);
-// // console.log(dataThirdBatch);
-// console.log(unitedData);

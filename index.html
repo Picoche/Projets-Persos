@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <script defer src="script.js"></script>
     <title>Portfolio</title>
@@ -20,17 +21,17 @@
             </ul>
         </nav>
         <section class="accueil__container">
-            <h1 class="accueil__content accueil__primary accueil__skewed accueil__load-left">HOMBERT FABIEN</h1>
+            <h1 class="accueil__content accueil__primary accueil__skewed accueil__load-left">HOMBERT FABIEN
+            </h1>
             <br>
-            <h3 class="accueil__content accueil__tertiary accueil__skewed accueil__load-right">Etudiant de deuxième
-                année</h3>
+            <h3 class="accueil__content accueil__secondary accueil__skewed accueil__load-right">Étudiant en BUT MMI
+            </h3>
             <br>
-            <h2 class="accueil__content accueil__secondary accueil__skewed accueil__load-left">BUT MMI</h2>
         </section>
     </header>
     <main>
-        <section class="presentation__container">
-            <p class="presentation__title">A propos de moi</p>
+        <section class="presentation__container" id="a-propos">
+            <p class="presentation__title ">A propos de moi</p>
             <p class="presentation">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam culpa ratione,
                 consequatur quis quo dicta perferendis maiores laborum placeat necessitatibus, odit aliquid saepe nulla,
                 molestias repellat magni qui dolor obcaecati.</p>
@@ -105,25 +106,38 @@
             </div> -->
         <p class="portfolio__title">Mon Portfolio</p>
         <section class="portfolio__main-container">
-            <div class="portfolio__first-row row">
-                <p><i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus ipsam beatae, eaque laborum
-                        sed sint officiis earum exercitationem qui quo doloremque ipsum vitae nam obcaecati
-                        reprehenderit magnam vero, quis minima?</i></p>
-                <img class="active" src="img/image 1.jpg" alt="">
+            <div class="row-wrapper">
+                <div class="portfolio__first-row row">
+                    <span class="arrow-right arrow">&#129188;</span>
+                    <p><i>One page d'une agence de communication fictive, réalisé en HTML/CSS/JS brut.</i></p>
+                    <img class="active" src="img/image 1.jpg" alt="">
+                    <span class="arrow-left arrow">&#129189;</span>
+                </div>
             </div>
 
-            <div class="portfolio__second-row row active">
-                <p><i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus ipsam beatae, eaque laborum
-                        sed sint officiis earum exercitationem qui quo doloremque ipsum vitae nam obcaecati
-                        reprehenderit magnam vero, quis minima?</i></p>
-                <img class="active" src="img/image 2.jpg" alt="">
+            <div class="row-wrapper">
+                <div class="portfolio__second-row row">
+                    <span class="arrow-right arrow">&#129188;</span>
+                    <p><i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus ipsam beatae, eaque
+                            laborum
+                            sed sint officiis earum exercitationem qui quo doloremque ipsum vitae nam obcaecati
+                            reprehenderit magnam vero, quis minima?</i></p>
+                    <img class="active" src="img/image 2.jpg" alt="">
+                    <span class="arrow-left arrow">&#129189;</span>
+                </div>
+
             </div>
 
-            <div class="portfolio__third-row row active">
-                <p><i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus ipsam beatae, eaque laborum
-                        sed sint officiis earum exercitationem qui quo doloremque ipsum vitae nam obcaecati
-                        reprehenderit magnam vero, quis minima?</i></p>
-                <img class="active" src="img/image 3.jpg" alt="">
+            <div class="row-wrapper">
+                <div class="portfolio__third-row row">
+                    <span class="arrow-right arrow">&#129188;</span>
+                    <p><i>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus ipsam beatae, eaque
+                            laborum
+                            sed sint officiis earum exercitationem qui quo doloremque ipsum vitae nam obcaecati
+                            reprehenderit magnam vero, quis minima?</i></p>
+                    <img class="active" src="img/image 3.jpg" alt="">
+                    <span class="arrow-left arrow">&#129189;</span>
+                </div>
             </div>
         </section>
     </main>
